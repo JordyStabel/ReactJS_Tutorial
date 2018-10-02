@@ -1,10 +1,14 @@
 {
-  "name": "new",
+  "name": "reactjs-tutorial",
   "version": "1.0.0",
-  "description": "",
+  "description": "ReactJS tutorial series, with Material-UI",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "@material-ui/core": "3.1.2",
+    "@material-ui/icons": "3.0.1",
+    "material-ui": "1.0.0-beta.46",
+    "prop-types": "15.6.2",
     "react": "16.5.2",
     "react-dom": "16.5.2",
     "react-scripts": "2.0.3"
