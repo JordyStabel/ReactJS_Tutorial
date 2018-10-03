@@ -1,19 +1,39 @@
-import React, { Component, Fragment } from 'react';
-import { Header, Footer } from './Layouts';
-import Content from './Content';
+import React, { Component, Fragment } from "react";
+import { Header, Footer } from "./Layouts";
+import Content from "./Content";
+import { allergies, dishes } from "../store";
 
 class App extends Component {
-  render() { 
+  constructor(props) {
+    super(props);
+    this.state = { dishes };
+  }
+
+  getDishesByAllergy() {
+    return Object.entries(
+      this.state.dishes.reduce((dishes, dish) => {
+        const { allergies } = dish;
+
+        dishes[allergies] = dishes[allergies]
+          ? [...dishes[allergies], dish]
+          : [dish];
+
+        return dishes;
+      }, {})
+    );
+  }
+
+  render() {
+    console.log(this.getDishesByAllergy());
     return (
       <Fragment>
-        <Header/>
+        <Header />
 
-        <Content/>
+        <Content dishes={dishes} />
 
-        <Footer/>
+        <Footer allergies={allergies} />
       </Fragment>
     );
   }
 }
-
 export default App;
