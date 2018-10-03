@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Header, Footer } from './Layouts';
-import Logic from './Logic';
+import Content from './Content';
 
 class App extends Component {
   render() { 
@@ -8,7 +8,7 @@ class App extends Component {
       <Fragment>
         <Header/>
 
-        <Logic/>
+        <Content/>
 
         <Footer/>
       </Fragment>
