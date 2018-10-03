@@ -29,7 +29,7 @@ class App extends Component {
       <Fragment>
         <Header />
 
-        <Content dishes={dishes} />
+        <Content dishes={ this.getDishesByAllergy()} />
 
         <Footer allergies={allergies} />
       </Fragment>

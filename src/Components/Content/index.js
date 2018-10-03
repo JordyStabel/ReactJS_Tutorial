@@ -20,9 +20,9 @@ export default ({ dishes }) => (
   <Grid container>
     <Grid item xs={12}>
       <Paper style={style.paper}>
-        {dishes.map(([group, dishes]) =>
+        {dishes.map(([group, dishes]) => 
           <Typography variant='headline'>
-            Test
+            {group}
           </Typography>
         )}
       </Paper>
