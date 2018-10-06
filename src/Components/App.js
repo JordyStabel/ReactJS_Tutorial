@@ -3,10 +3,10 @@ import { Header, Footer } from "./Layouts";
 import Content from "./Content";
 import { allergies, dishes } from "../store";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { dishes };
+export default class extends Component {
+  state = {
+    dishes,
+    dish: {}
   }
 
   getDishesByAllergy() {
@@ -29,11 +29,10 @@ class App extends Component {
       <Fragment>
         <Header />
 
-        <Content dishes={ this.getDishesByAllergy()} />
+        <Content dishes={this.getDishesByAllergy()} />
 
         <Footer allergies={allergies} />
       </Fragment>
     );
   }
 }
-export default App;
