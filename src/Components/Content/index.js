@@ -13,34 +13,53 @@ const style = {
     padding: 20,
     margin: 10,
     height: 500,
-    overflowY: 'auto'
+    overflowY: "auto"
   }
 };
 
-export default ({ dishes }) => (
+export default ({
+  dishes,
+  category,
+  onSelect,
+  dish: {
+    id, 
+    title = 'Welcome!', 
+    description = 'Please select a dish from the list on the left'
+  }
+}) => (
   <Grid container>
     <Grid item sm>
       <Paper style={style.paper}>
-        {dishes.map(([group, dishes]) => (
-          <Fragment>
-            <Typography variant="headline">{group}</Typography>
-            <List component="ul">
-              {dishes.map(({ title }) => (
-                <ListItem button>
-                  <ListItemText primary={title} />
-                </ListItem>
-              ))}
-            </List>
-          </Fragment>
-        ))}
+        {dishes.map(
+          ([group, dishes]) =>
+            !category || category === group ? (
+              <Fragment key={group}>
+                <Typography variant="headline">{group}</Typography>
+                <List component="ul">
+                  {dishes.map(({ id, title }) => (
+                    <ListItem
+                    key={id}
+                    button 
+                    onClick={() => onSelect(id)}>
+                      <ListItemText
+                        primary={title}
+                      />
+                    </ListItem>
+                  ))}
+                </List>
+              </Fragment>
+            ) : null
+        )}
       </Paper>
     </Grid>
 
     <Grid item sm>
       <Paper style={style.paper}>
-        <Typography variant="display1">Welcome!</Typography>
+        <Typography variant="display1">
+          {title}
+        </Typography>
         <Typography variant="subheading" style={{ marginTop: 20 }}>
-          Please select a dish from the list on the left
+          {description}
         </Typography>
       </Paper>
     </Grid>

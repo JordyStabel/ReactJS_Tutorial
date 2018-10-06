@@ -39,21 +39,21 @@ export const dishes = [
     price: '€6.00'
   },
   {
-    id: 'irish-coffee',
+    id: 'irish-coffee2',
     title: 'Irish Coffee met slagroom 2',
     description: 'Bevat alcohol en koffie',
     allergies: 'Alcohol',
     price: '€6.00'
   },
   {
-    id: 'irish-coffee',
+    id: 'irish-coffee3',
     title: 'Irish Coffee met slagroom 3',
     description: 'Bevat alcohol en koffie',
     allergies: 'Alcohol',
     price: '€6.00'
   },
   {
-    id: 'irish-coffee',
+    id: 'irish-coffee4',
     title: 'Irish Coffee met slagroom 4',
     description: 'Bevat alcohol en koffie',
     allergies: 'Alcohol',

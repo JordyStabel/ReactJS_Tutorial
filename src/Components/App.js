@@ -7,7 +7,7 @@ export default class extends Component {
   state = {
     dishes,
     dish: {}
-  }
+  };
 
   getDishesByAllergy() {
     return Object.entries(
@@ -23,15 +23,38 @@ export default class extends Component {
     );
   }
 
+  handleCategorySelected = category => {
+    this.setState({
+      category
+    });
+  };
+
+  handleDishSelected = id => {
+    this.setState(({ dishes }) => ({
+      dish: dishes.find(_dish => _dish.id === id)
+    }));
+  };
+
   render() {
-    console.log(this.getDishesByAllergy());
+    const dishes = this.getDishesByAllergy(),
+      { category, dish } = this.state;
+
     return (
       <Fragment>
         <Header />
 
-        <Content dishes={this.getDishesByAllergy()} />
+        <Content
+          dish={dish}
+          dishes={dishes}
+          category={category}
+          onSelect={this.handleDishSelected}
+        />
 
-        <Footer allergies={allergies} />
+        <Footer
+          allergies={allergies}
+          category={category}
+          onSelect={this.handleCategorySelected}
+        />
       </Fragment>
     );
   }
