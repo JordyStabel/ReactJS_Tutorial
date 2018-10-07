@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Header, Footer } from "./Layouts";
 import Content from "./Content";
-import { allergies, dishes } from "../store";
+import { allergies, dishes } from "../data";
 
 export default class extends Component {
   state = {

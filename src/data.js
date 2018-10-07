@@ -58,5 +58,12 @@ export const dishes = [
     description: 'Warme drank, koffie',
     allergies: 'None',
     price: '€4.00'
+  },
+  {
+    id: 'coffee-cream',
+    title: 'Coffee with cream',
+    description: 'Warme drank met slagroom',
+    allergies: 'Milk',
+    price: '€4.00'
   }
 ]
