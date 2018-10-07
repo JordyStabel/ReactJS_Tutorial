@@ -31,8 +31,10 @@ export default withStyles(styles)(
           };
     }
 
-    static getDerivedStateFromProps({ dish }) {
-      return dish || null;
+    componentWillReceiveProps({ dish }) {
+      this.setState({
+        ...dish
+      });
     }
 
     handleChange = name => ({ target: { value } }) => {

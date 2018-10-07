@@ -50,14 +50,14 @@ export default class extends Component {
   };
 
   handleDishDelete = id => {
-    this.setState(({ dishes }) => ({
+    this.setState(({ dishes, dish, editMode }) => ({
       dishes: dishes.filter(_dish => _dish.id !== id),
       // Check if editMode previously stored dish (in state) is equal to the selected dish
       // This is to prevent deleting a different dish, switching the currently selected state.dish editMode
-      editMode: dish.id == id ? false : editMode,
+      editMode: dish.id === id ? false : editMode,
       // Check if id previously stored dish (in state) is equal to the selected dish
       // This is to prevent deleting a different dish, switching the currently selected state.dish
-      dish: dish.id == id ? {} : dish
+      dish: dish.id === id ? {} : dish
     }));
   };
 
