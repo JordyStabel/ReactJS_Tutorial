@@ -1,5 +1,5 @@
 export const allergies= [
-  'Nuts', 'Milk', 'Meat', 'Alcohol'
+  'Nuts', 'Milk', 'Meat', 'Alcohol', 'None'
 ]
 
 export const dishes = [
@@ -28,7 +28,7 @@ export const dishes = [
     id: 'spaghetti',
     title: 'Spaghetti bolignese',
     description: 'Pasta met saus',
-    allergies: '',
+    allergies: 'Meat',
     price: '€15.00'
   },
   {
@@ -53,10 +53,10 @@ export const dishes = [
     price: '€6.00'
   },
   {
-    id: 'irish-coffee4',
-    title: 'Irish Coffee met slagroom 4',
-    description: 'Bevat alcohol en koffie',
-    allergies: 'Alcohol',
-    price: '€6.00'
+    id: 'coffee',
+    title: 'Coffee',
+    description: 'Warme drank, koffie',
+    allergies: 'None',
+    price: '€4.00'
   }
 ]

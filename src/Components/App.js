@@ -23,16 +23,25 @@ export default class extends Component {
     );
   }
 
-  handleCategorySelected = category => {
+  handleCategorySelect = category => {
     this.setState({
       category
     });
   };
 
-  handleDishSelected = id => {
+  handleDishSelect = id => {
     this.setState(({ dishes }) => ({
       dish: dishes.find(_dish => _dish.id === id)
     }));
+  };
+
+  handleDishCreate = dish => {
+    this.setState(({ dishes }) => ({
+      dishes: [
+        ...dishes,
+        dish
+      ]
+    })) 
   };
 
   render() {
@@ -41,19 +50,22 @@ export default class extends Component {
 
     return (
       <Fragment>
-        <Header />
+        <Header 
+          allergies={allergies}
+          onDishCreate={this.handleDishCreate}
+        />
 
         <Content
           dish={dish}
           dishes={dishes}
           category={category}
-          onSelect={this.handleDishSelected}
+          onSelect={this.handleDishSelect}
         />
 
         <Footer
           allergies={allergies}
           category={category}
-          onSelect={this.handleCategorySelected}
+          onSelect={this.handleCategorySelect}
         />
       </Fragment>
     );
