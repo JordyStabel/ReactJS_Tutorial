@@ -8,7 +8,6 @@ export default ({ allergies, onDishCreate }) => (
       <Typography variant="headline" color="inherit" style={{ flex: 1 }}>
         Restaurant Menu
       </Typography>
-
       <CreateDialog allergies={allergies} onCreate={onDishCreate} />
     </Toolbar>
   </AppBar>

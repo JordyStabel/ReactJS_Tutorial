@@ -27,7 +27,7 @@ const style = {
   dishItem: {
     padding: 20,
     height: "auto",
-    margin: 10,
+    margin: 5,
     overflowY: "auto"
   },
   categroyWrapper: {
@@ -55,6 +55,47 @@ export default ({
   onEdit
 }) => (
   <Grid container>
+    {/*Generated items form 'database'*/}
+    <Grid item xs={12}>
+      {dishes.map(
+        ([group, dishes]) =>
+          !category || category === group ? (
+            <Paper style={style.categroyWrapper}>
+              <Fragment key={group}>
+                <Typography variant="headline">{group}</Typography>
+                {dishes.map(({ id, title, description }) => (
+                  <Paper style={style.dishItem}>
+                    <div style={{ display: "flex" }}>
+                      <div style={{ flex: 1 }}>
+                        <Typography variant="display1" gutterBottom>
+                          {title}
+                        </Typography>
+                        <Typography
+                          variant="subheading"
+                          style={{ marginTop: 0 }}
+                        >
+                          {description}
+                        </Typography>
+                      </div>
+                      <div
+                        style={{
+                          margin: "auto",
+                          padding: 10
+                        }}
+                      >
+                        <Button variant="fab" color="primary">
+                          <Add />
+                        </Button>
+                      </div>
+                    </div>
+                  </Paper>
+                ))}
+              </Fragment>
+            </Paper>
+          ) : null
+      )}
+    </Grid>
+
     <Grid item sm>
       <Paper style={style.paper}>
         {dishes.map(
@@ -85,18 +126,13 @@ export default ({
 
     <Grid item sm>
       <Paper style={style.paper}>
+        <Typography variant="display1">{title}</Typography>
         {editMode ? (
-          <Form 
-          allergies={allergies}
-              onSubmit={onEdit}
-              dish={dish}/>
+          <Form key={id} allergies={allergies} onSubmit={onEdit} dish={dish} />
         ) : (
-          <Fragment>
-            <Typography variant="display1">{title}</Typography>
-            <Typography variant="subheading" style={{ marginTop: 20 }}>
-              {description}
-            </Typography>
-          </Fragment>
+          <Typography variant="subheading" style={{ marginTop: 20 }}>
+            {description}
+          </Typography>
         )}
       </Paper>
     </Grid>
@@ -108,45 +144,6 @@ export default ({
           Beschrijving van het gerecht...
         </Typography>
       </Paper>
-    </Grid>
-
-    {/*Generated items form 'database'*/}
-    <Grid item xs={12}>
-      {dishes.map(
-        ([group, dishes]) =>
-          !category || category === group ? (
-            <Paper style={style.categroyWrapper}>
-              <Fragment key={group}>
-                <Typography variant="headline">{group}</Typography>
-                {dishes.map(({ id, title, description }) => (
-                  <Paper style={style.dishItem}>
-                    <div style={{ display: "flex" }}>
-                      <div style={{ flex: 1 }}>
-                        <Typography variant="display1">{title}</Typography>
-                        <Typography
-                          variant="subheading"
-                          style={{ marginTop: 20 }}
-                        >
-                          {description}
-                        </Typography>
-                      </div>
-                      <div
-                        style={{
-                          margin: "auto",
-                          padding: 10
-                        }}
-                      >
-                        <Button variant="fab" color="primary">
-                          <Add />
-                        </Button>
-                      </div>
-                    </div>
-                  </Paper>
-                ))}
-              </Fragment>
-            </Paper>
-          ) : null
-      )}
     </Grid>
   </Grid>
 );

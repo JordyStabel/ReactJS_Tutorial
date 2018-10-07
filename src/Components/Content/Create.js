@@ -34,7 +34,7 @@ export default class extends Component {
         <Button variant="fab" onClick={this.handleToggle} mini>
           <Add />
         </Button>
-        <Dialog open={open} onClose={this.handleToggle}>
+        <Dialog open={open} onClose={this.handleToggle} fullWidth>
           <DialogTitle>Create new dish</DialogTitle>
           <DialogContent>
             <DialogContentText>

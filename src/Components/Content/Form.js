@@ -5,13 +5,13 @@ import {
   FormControl,
   InputLabel,
   Select,
-  MenuItem
+  MenuItem,
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
   FormControl: {
-    width: 300
+    // None for now
   }
 });
 
@@ -51,9 +51,6 @@ export default withStyles(styles)(
         id: this.state.title.toLocaleLowerCase().replace(/ /g, "-"),
         ...this.state
       });
-
-      // Reset the state and close the pop-up
-      this.setState(this.getInitialState());
     };
 
     render() {
@@ -67,9 +64,10 @@ export default withStyles(styles)(
             onChange={this.handleChange("title")}
             margin="normal"
             className={classes.FormControl}
+            fullWidth
           />
           <br />
-          <FormControl className={classes.FormControl}>
+          <FormControl className={classes.FormControl} fullWidth>
             <InputLabel htmlFor="allergies">Allergies</InputLabel>
             <Select value={allergies} onChange={this.handleChange("allergies")}>
               {categories.map(category => (
@@ -88,9 +86,15 @@ export default withStyles(styles)(
             onChange={this.handleChange("description")}
             margin="normal"
             className={classes.FormControl}
+            fullWidth
           />
           <br />
-          <Button color="primary" variant="raised" onClick={this.handleSubmit}>
+          <Button 
+          color="primary" 
+          variant="raised" 
+          onClick={this.handleSubmit}
+          fullWidth
+          disabled={!title || !allergies}>
             {dish ? "Edit" : "Create"}
           </Button>
         </form>

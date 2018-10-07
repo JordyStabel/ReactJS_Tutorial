@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { CssBaseline } from "@material-ui/core";
 import { Header, Footer } from "./Layouts";
 import Content from "./Content";
 import { allergies, dishes } from "../data";
@@ -81,6 +82,8 @@ export default class extends Component {
 
     return (
       <Fragment>
+        {/*CssBaseline handles the different baselin css browsers have, to make it more consitant across multiple different browsers*/}
+        <CssBaseline />
         <Header allergies={allergies} onDishCreate={this.handleDishCreate} />
 
         <Content
