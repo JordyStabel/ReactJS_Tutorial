@@ -12,6 +12,11 @@ import { withStyles } from "@material-ui/core/styles";
 const styles = theme => ({
   FormControl: {
     // None for now
+  },
+  '@global': {
+    'html, body, #root': {
+      height: '100%'
+    }
   }
 });
 

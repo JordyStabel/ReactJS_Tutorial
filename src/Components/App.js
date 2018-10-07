@@ -6,6 +6,7 @@ import { allergies, dishes } from "../data";
 
 export default class extends Component {
   state = {
+    darkThem: false,
     dishes,
     dish: {},
     editMode: false
