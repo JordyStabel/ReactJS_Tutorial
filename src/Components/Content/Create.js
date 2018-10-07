@@ -4,7 +4,7 @@ import {
   Dialog,
   DialogContent,
   DialogContentText,
-  DialogTitle,
+  DialogTitle
 } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import Form from "./Form";
@@ -20,9 +20,14 @@ export default class extends Component {
     });
   };
 
+  handleFormSubmit = dish => {
+    this.handleToggle();
+    this.props.onCreate(dish);
+  };
+
   render() {
     const { open } = this.state,
-    { allergies, onCreate } = this.props
+      { allergies } = this.props;
 
     return (
       <Fragment>
@@ -30,14 +35,12 @@ export default class extends Component {
           <Add />
         </Button>
         <Dialog open={open} onClose={this.handleToggle}>
-          <DialogTitle id="form-dialog-title">Create new dish</DialogTitle>
+          <DialogTitle>Create new dish</DialogTitle>
           <DialogContent>
             <DialogContentText>
               Please fill out the form below.
             </DialogContentText>
-            <Form 
-              allergies={allergies}
-              onSubmit={onCreate}/>
+            <Form allergies={allergies} onSubmit={this.handleFormSubmit} />
           </DialogContent>
         </Dialog>
       </Fragment>

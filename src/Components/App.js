@@ -38,7 +38,8 @@ export default class extends Component {
 
   handleDishSelect = id => {
     this.setState(({ dishes }) => ({
-      dish: dishes.find(_dish => _dish.id === id)
+      dish: dishes.find(_dish => _dish.id === id),
+      editMode: false
     }));
   };
 
@@ -50,7 +51,9 @@ export default class extends Component {
 
   handleDishDelete = id => {
     this.setState(({ dishes }) => ({
-      dishes: dishes.filter(_dish => _dish.id !== id)
+      dishes: dishes.filter(_dish => _dish.id !== id),
+      editMode: false,
+      dish: {}
     }));
   };
 
@@ -63,7 +66,8 @@ export default class extends Component {
 
   handleDishEdit = dish => {
     this.setState(({ dishes }) => ({
-      dishes: [...dishes.filter(_dish => _dish.id !== dish.id), dish]
+      dishes: [...dishes.filter(_dish => _dish.id !== dish.id), dish],
+      dish
     }));
   };
 

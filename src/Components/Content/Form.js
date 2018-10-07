@@ -20,13 +20,21 @@ export default withStyles(styles)(
     state = this.getInitialState();
 
     getInitialState() {
-      const { dish } = this.props
+      const { dish } = this.props;
 
-      return dish ? dish : {
-        title: "",
-        description: "",
-        allergies: ""
-      }
+      return dish
+        ? dish
+        : {
+            title: "",
+            description: "",
+            allergies: ""
+          };
+    }
+
+    componentWillReceiveProps({ dish }) {
+      this.setState({
+        ...dish
+      });
     }
 
     handleChange = name => ({ target: { value } }) => {
@@ -38,27 +46,19 @@ export default withStyles(styles)(
     handleSubmit = () => {
       // TODO: add validation
 
-      const { dish } = this.state;
       this.props.onSubmit({
-        ...dish,
         // Create an ID from the title, replacing spaces with '-'
-        id: dish.title.toLocaleLowerCase().replace(/ /g, "-")
+        id: this.state.title.toLocaleLowerCase().replace(/ /g, "-"),
+        ...this.state
       });
 
       // Reset the state and close the pop-up
-      this.setState({
-        open: false,
-        dish: {
-          title: "",
-          description: "",
-          allergies: ""
-        }
-      });
+      this.setState(this.getInitialState());
     };
 
     render() {
       const { title, description, allergies } = this.state,
-        { classes, allergies: categories } = this.props;
+        { classes, dish, allergies: categories } = this.props;
       return (
         <form>
           <TextField
@@ -91,7 +91,7 @@ export default withStyles(styles)(
           />
           <br />
           <Button color="primary" variant="raised" onClick={this.handleSubmit}>
-            Create
+            {dish ? "Edit" : "Create"}
           </Button>
         </form>
       );
