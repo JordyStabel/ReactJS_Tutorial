@@ -10,16 +10,24 @@ export default class extends Component {
   };
 
   getDishesByAllergy() {
+    const initAllergies = allergies.reduce(
+      (dishes, allergy) => ({
+        ...dishes,
+        [allergy]: []
+      }),
+      {}
+    );
+
+    console.log(allergies, initAllergies);
+
     return Object.entries(
       this.state.dishes.reduce((dishes, dish) => {
         const { allergies } = dish;
 
-        dishes[allergies] = dishes[allergies]
-          ? [...dishes[allergies], dish]
-          : [dish];
+        dishes[allergies] = [...dishes[allergies], dish];
 
         return dishes;
-      }, {})
+      }, initAllergies)
     );
   }
 
@@ -37,11 +45,14 @@ export default class extends Component {
 
   handleDishCreate = dish => {
     this.setState(({ dishes }) => ({
-      dishes: [
-        ...dishes,
-        dish
-      ]
-    })) 
+      dishes: [...dishes, dish]
+    }));
+  };
+
+  handleDishDelete = id => {
+    this.setState(({ dishes }) => ({
+      dishes: dishes.filter(_dish => _dish.id !== id)
+    }));
   };
 
   render() {
@@ -50,16 +61,14 @@ export default class extends Component {
 
     return (
       <Fragment>
-        <Header 
-          allergies={allergies}
-          onDishCreate={this.handleDishCreate}
-        />
+        <Header allergies={allergies} onDishCreate={this.handleDishCreate} />
 
         <Content
           dish={dish}
           dishes={dishes}
           category={category}
           onSelect={this.handleDishSelect}
+          onDelete={this.handleDishDelete}
         />
 
         <Footer

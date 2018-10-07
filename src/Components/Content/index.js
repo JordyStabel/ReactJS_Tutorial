@@ -5,10 +5,12 @@ import {
   Typography,
   List,
   ListItem,
+  ListItemSecondaryAction,
   ListItemText,
-  Button
+  Button,
+  IconButton
 } from "@material-ui/core";
-import { Add } from "@material-ui/icons";
+import { Add, Delete } from "@material-ui/icons";
 
 const style = {
   paper: {
@@ -43,7 +45,9 @@ export default ({
     id,
     title = "Welcome!",
     description = "Please select a dish from the list on the left"
-  }
+  },
+  onDelete
+  
 }) => (
   <Grid container>
     <Grid item sm>
@@ -57,6 +61,11 @@ export default ({
                   {dishes.map(({ id, title }) => (
                     <ListItem key={id} button onClick={() => onSelect(id)}>
                       <ListItemText primary={title} />
+                      <ListItemSecondaryAction>
+                      <IconButton onClick={ () => onDelete(id)} >
+                          <Delete />
+                      </IconButton>
+                        </ListItemSecondaryAction>
                     </ListItem>
                   ))}
                 </List>
