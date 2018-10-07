@@ -1,6 +1,6 @@
 import React from "react";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
-import CreateDialog from "../Content/Dialogs/Create";
+import CreateDialog from "../Content/Create";
 
 export default ({ allergies, onDishCreate }) => (
   <AppBar position="static">

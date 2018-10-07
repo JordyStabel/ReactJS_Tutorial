@@ -6,7 +6,8 @@ import { allergies, dishes } from "../data";
 export default class extends Component {
   state = {
     dishes,
-    dish: {}
+    dish: {},
+    editMode: false
   };
 
   getDishesByAllergy() {
@@ -17,8 +18,6 @@ export default class extends Component {
       }),
       {}
     );
-
-    console.log(allergies, initAllergies);
 
     return Object.entries(
       this.state.dishes.reduce((dishes, dish) => {
@@ -55,9 +54,22 @@ export default class extends Component {
     }));
   };
 
+  handleSelectEdit = id => {
+    this.setState(({ dishes }) => ({
+      dish: dishes.find(_dish => _dish.id === id),
+      editMode: true
+    }));
+  };
+
+  handleDishEdit = dish => {
+    this.setState(({ dishes }) => ({
+      dishes: [...dishes.filter(_dish => _dish.id !== dish.id), dish]
+    }));
+  };
+
   render() {
     const dishes = this.getDishesByAllergy(),
-      { category, dish } = this.state;
+      { category, dish, editMode } = this.state;
 
     return (
       <Fragment>
@@ -67,8 +79,12 @@ export default class extends Component {
           dish={dish}
           dishes={dishes}
           category={category}
+          editMode={editMode}
+          allergies={allergies}
           onSelect={this.handleDishSelect}
           onDelete={this.handleDishDelete}
+          onSelectEdit={this.handleSelectEdit}
+          onEdit={this.handleDishEdit}
         />
 
         <Footer

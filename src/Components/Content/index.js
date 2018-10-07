@@ -10,7 +10,8 @@ import {
   Button,
   IconButton
 } from "@material-ui/core";
-import { Add, Delete } from "@material-ui/icons";
+import { Add, Delete, Edit } from "@material-ui/icons";
+import Form from "./Form";
 
 const style = {
   paper: {
@@ -38,16 +39,20 @@ const style = {
 };
 
 export default ({
+  allergies,
   dishes,
+  dish,
   category,
+  editMode,
   onSelect,
   dish: {
     id,
     title = "Welcome!",
     description = "Please select a dish from the list on the left"
   },
-  onDelete
-  
+  onDelete,
+  onSelectEdit,
+  onEdit
 }) => (
   <Grid container>
     <Grid item sm>
@@ -62,10 +67,13 @@ export default ({
                     <ListItem key={id} button onClick={() => onSelect(id)}>
                       <ListItemText primary={title} />
                       <ListItemSecondaryAction>
-                      <IconButton onClick={ () => onDelete(id)} >
+                        <IconButton onClick={() => onSelectEdit(id)}>
+                          <Edit />
+                        </IconButton>
+                        <IconButton onClick={() => onDelete(id)}>
                           <Delete />
-                      </IconButton>
-                        </ListItemSecondaryAction>
+                        </IconButton>
+                      </ListItemSecondaryAction>
                     </ListItem>
                   ))}
                 </List>
@@ -77,10 +85,19 @@ export default ({
 
     <Grid item sm>
       <Paper style={style.paper}>
-        <Typography variant="display1">{title}</Typography>
-        <Typography variant="subheading" style={{ marginTop: 20 }}>
-          {description}
-        </Typography>
+        {editMode ? (
+          <Form 
+          allergies={allergies}
+              onSubmit={onEdit}
+              dish={dish}/>
+        ) : (
+          <Fragment>
+            <Typography variant="display1">{title}</Typography>
+            <Typography variant="subheading" style={{ marginTop: 20 }}>
+              {description}
+            </Typography>
+          </Fragment>
+        )}
       </Paper>
     </Grid>
 
@@ -115,7 +132,7 @@ export default ({
                       </div>
                       <div
                         style={{
-                          margin: 'auto',
+                          margin: "auto",
                           padding: 10
                         }}
                       >
