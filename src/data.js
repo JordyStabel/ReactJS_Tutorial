@@ -27,7 +27,7 @@ export const dishes = [
   {
     id: 'spaghetti',
     title: 'Spaghetti bolignese',
-    description: 'Pasta met saus',
+    description: 'Pasta met saus, raw sauce no ketchup',
     allergies: 'Meat',
     price: '€15.00'
   },

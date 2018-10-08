@@ -9,6 +9,8 @@ export default withWidth()(({ allergies, category, onSelect, width }) => {
 
   const onIndexSelect = (event, index) => {
     onSelect(index === 0 ? "" : allergies[index - 1]);
+    localStorage.setItem("darkTheme", false);
+    console.log(localStorage.getItem("darkTheme"));
   };
 
   return (

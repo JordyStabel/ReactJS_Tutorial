@@ -43,6 +43,7 @@ export default class extends Component {
       dish: dishes.find(_dish => _dish.id === id),
       editMode: false
     }));
+    console.log(foo());
   };
 
   handleDishCreate = dish => {
@@ -85,6 +86,7 @@ export default class extends Component {
       <Fragment>
         {/*CssBaseline handles the different baselin css browsers have, to make it more consitant across multiple different browsers*/}
         <CssBaseline />
+
         <Header allergies={allergies} onDishCreate={this.handleDishCreate} />
 
         <Content
