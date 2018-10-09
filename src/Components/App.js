@@ -3,6 +3,8 @@ import { CssBaseline } from "@material-ui/core";
 import { Header, Footer } from "./Layouts";
 import Content from "./Content";
 import { allergies, dishes } from "../data";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import darkTheme from "../themes";
 
 export default class extends Component {
   state = {
@@ -20,6 +22,8 @@ export default class extends Component {
       }),
       {}
     );
+
+    const _darkTheme = darkTheme;
 
     return Object.entries(
       this.state.dishes.reduce((dishes, dish) => {
@@ -43,7 +47,8 @@ export default class extends Component {
       dish: dishes.find(_dish => _dish.id === id),
       editMode: false
     }));
-    console.log(foo());
+    console.log(darkTheme);
+    this.props.changeTheme();
   };
 
   handleDishCreate = dish => {
@@ -83,30 +88,32 @@ export default class extends Component {
       { category, dish, editMode } = this.state;
 
     return (
-      <Fragment>
-        {/*CssBaseline handles the different baselin css browsers have, to make it more consitant across multiple different browsers*/}
-        <CssBaseline />
+      <MuiThemeProvider theme={darkTheme}>
+        <Fragment>
+          {/*CssBaseline handles the different baselin css browsers have, to make it more consitant across multiple different browsers*/}
+          <CssBaseline />
 
-        <Header allergies={allergies} onDishCreate={this.handleDishCreate} />
+          <Header allergies={allergies} onDishCreate={this.handleDishCreate} />
 
-        <Content
-          dish={dish}
-          dishes={dishes}
-          category={category}
-          editMode={editMode}
-          allergies={allergies}
-          onSelect={this.handleDishSelect}
-          onDelete={this.handleDishDelete}
-          onSelectEdit={this.handleSelectEdit}
-          onEdit={this.handleDishEdit}
-        />
+          <Content
+            dish={dish}
+            dishes={dishes}
+            category={category}
+            editMode={editMode}
+            allergies={allergies}
+            onSelect={this.handleDishSelect}
+            onDelete={this.handleDishDelete}
+            onSelectEdit={this.handleSelectEdit}
+            onEdit={this.handleDishEdit}
+          />
 
-        <Footer
-          allergies={allergies}
-          category={category}
-          onSelect={this.handleCategorySelect}
-        />
-      </Fragment>
+          <Footer
+            allergies={allergies}
+            category={category}
+            onSelect={this.handleCategorySelect}
+          />
+        </Fragment>
+      </MuiThemeProvider>
     );
   }
 }

@@ -5,7 +5,7 @@ import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 
-export default ({ allergies, onDishCreate }) => (
+export default ({ allergies, onDishCreate, toggleTheme }) => (
   <AppBar position="static">
     <Toolbar>
       <Typography variant="headline" color="inherit" style={{ flex: 1 }}>
@@ -18,6 +18,7 @@ export default ({ allergies, onDishCreate }) => (
             // onChange={}
             value="checkedB"
             color="secondary"
+            onChange={toggleTheme}
           />
         }
         label=""

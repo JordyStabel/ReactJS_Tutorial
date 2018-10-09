@@ -11,11 +11,18 @@ console.log(localStorage.getItem("darkTheme"));
 function toggleTheme() {
   isDarkTheme: !isDarkTheme;
   localStorage.setItem("darkTheme", isDarkTheme);
+  console.log("Test");
+  ReactDOM.render(
+    <MuiThemeProvider theme={lightTheme}>
+      <App changeTheme={toggleTheme} />
+    </MuiThemeProvider>,
+    document.getElementById("root")
+  );
 }
 
 const lightTheme = createMuiTheme({
   palette: {
-    type: "light",
+    type: localStorage.getItem("darkTheme") ? "light" : "dark",
     primary: blue,
     secondary: {
       main: grey[50],
@@ -37,13 +44,15 @@ const darkTheme = createMuiTheme({
   }
 });
 
+console.log(darkTheme);
+
 ReactDOM.render(
   <MuiThemeProvider
     theme={
       localStorage.getItem("darkTheme") === "true" ? darkTheme : lightTheme
     }
   >
-    <App />
+    <App changeTheme={toggleTheme.bind(this)} />
   </MuiThemeProvider>,
   document.getElementById("root")
 );
